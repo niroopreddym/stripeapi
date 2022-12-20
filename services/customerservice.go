@@ -60,3 +60,18 @@ func (h *CustomerService) UpdateCustomer(customer models.Customer) (*stripe.Cust
 
 	return cust, nil
 }
+
+// DeleteCustomer ...
+func (h *CustomerService) DeleteCustomer(customerID string) error {
+	_, err := h.StripeAPI.Customers.Del(customerID, nil)
+	if err != nil {
+		return err
+	}
+
+	return nil
+}
+
+// GetCustomerByID ...
+func (h *CustomerService) GetCustomerByID(customerID string) (*stripe.Customer, error) {
+	return h.StripeAPI.Customers.Get(customerID, nil)
+}
