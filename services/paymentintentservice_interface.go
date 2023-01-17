@@ -8,4 +8,5 @@ import (
 // IPaymentIntentServices ....
 type IPaymentIntentServices interface {
 	CreateNewPaymentIntent(payment models.PaymentIntent) (*stripe.PaymentIntent, error)
+	ConfirmPaymentIntent(payment models.PaymentIntent) (*stripe.PaymentIntent, error)
 }

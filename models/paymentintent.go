@@ -4,6 +4,8 @@ import "github.com/stripe/stripe-go"
 
 //PaymentIntent ...
 type PaymentIntent struct {
-	Amount   int64
-	Currency stripe.Currency
+	PaymentID     string
+	Amount        int64
+	Currency      stripe.Currency
+	PaymentMethod string
 }

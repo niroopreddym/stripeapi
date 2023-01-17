@@ -19,7 +19,11 @@ func main() {
 	r.Handle("/customers/{customer_id}", http.HandlerFunc(customerHandler.PutCustomer)).Methods("PUT")
 	r.Handle("/customers/{customer_id}", http.HandlerFunc(customerHandler.DeleteCustomer)).Methods("DELETE")
 
-	r.Handle("/paymentintent", http.HandlerFunc(customerHandler.AddCustomer)).Methods("POST")
+	paymentIntentHandler := handlers.NewPaymentIntentHandler()
+	r.Handle("/paymentintent", http.HandlerFunc(paymentIntentHandler.StartPaymentIntent)).Methods("POST")
+
+	SessionHandler := handlers.NewSesssionsHandler()
+	r.Handle("/session", http.HandlerFunc(SessionHandler.CreateSession)).Methods("POST")
 
 	log.Fatal(http.ListenAndServe(":9294", r))
 }

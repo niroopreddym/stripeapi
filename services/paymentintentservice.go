@@ -28,3 +28,13 @@ func (h *PaymentIntentService) CreateNewPaymentIntent(payment models.PaymentInte
 
 	return paymentintent.New(&params)
 }
+
+// ConfirmPaymentIntent ...
+func (h *PaymentIntentService) ConfirmPaymentIntent(payment models.PaymentIntent) (*stripe.PaymentIntent, error) {
+	params := stripe.PaymentIntentConfirmParams{
+		// "pm_card_visa" is an exmaple of payemnt method
+		PaymentMethod: stripe.String(payment.PaymentMethod),
+	}
+
+	return paymentintent.Confirm(payment.PaymentID, &params)
+}
